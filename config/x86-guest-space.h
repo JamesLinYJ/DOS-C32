@@ -1,0 +1,40 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+#ifndef DOSC32_CONFIG_X86_GUEST_SPACE_H
+#define DOSC32_CONFIG_X86_GUEST_SPACE_H
+
+/* Storage policy for the guest interrupt topology, not detected hardware. */
+#define CONFIG_X86_GUEST_IRQ_PRODUCER_CAPACITY 4u
+#define CONFIG_X86_GUEST_IRQ_ROUTE_CAPACITY 4u
+#ifndef CONFIG_X86_GUEST_DEVICE_EVENT_PUMP_BUDGET
+#define CONFIG_X86_GUEST_DEVICE_EVENT_PUMP_BUDGET 32u
+#endif
+
+/*
+ * Fixed metadata only. Firmware pages themselves are allocated lazily from
+ * the E820-backed guest-memory owner on a validated write-protection fault.
+ */
+#ifndef CONFIG_X86_GUEST_FIRMWARE_CLIENT_CAPACITY
+#define CONFIG_X86_GUEST_FIRMWARE_CLIENT_CAPACITY 8u
+#endif
+#ifndef CONFIG_X86_GUEST_FIRMWARE_SHADOW_PAGE_CAPACITY
+#define CONFIG_X86_GUEST_FIRMWARE_SHADOW_PAGE_CAPACITY                    \
+	((X86_LEGACY_ROM_LIMIT - X86_DOS_VIDEO_LIMIT) / X86_PAGE_BYTES)
+#endif
+#ifndef CONFIG_X86_GUEST_FIRMWARE_RELEASE_ATTEMPTS
+#define CONFIG_X86_GUEST_FIRMWARE_RELEASE_ATTEMPTS 3u
+#endif
+
+/* Initial virtual AT keyboard policy. Guest commands may change this state. */
+#define CONFIG_X86_GUEST_I8042_COMMAND_BYTE                              \
+	(X86_I8042_COMMAND_BYTE_SYSTEM | X86_I8042_COMMAND_BYTE_IRQ1 |    \
+	 X86_I8042_COMMAND_BYTE_AUXILIARY_DISABLED |                      \
+	 X86_I8042_COMMAND_BYTE_TRANSLATE)
+#define CONFIG_X86_GUEST_I8042_INPUT_PORT 0u
+#define CONFIG_X86_GUEST_I8042_OUTPUT_PORT \
+	X86_I8042_OUTPUT_PORT_RESET_HIGH
+#define CONFIG_X86_GUEST_I8042_KEYBOARD_SCAN_SET 2u
+#define CONFIG_X86_GUEST_I8042_KEYBOARD_TYPEMATIC 0x2bu
+#define CONFIG_X86_GUEST_I8042_KEYBOARD_ID_FIRST 0xabu
+#define CONFIG_X86_GUEST_I8042_KEYBOARD_ID_SECOND 0x83u
+
+#endif

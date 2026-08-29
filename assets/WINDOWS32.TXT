@@ -1,0 +1,3 @@
+Windows 3.2 installation files are in C:\WINSETUP.
+Run WINSETUP.BAT to start the unmodified installer.
+The installation files are local test fixtures and are not part of DOS-C32.

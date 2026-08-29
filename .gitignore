@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+# Reproducible build output
+/build/
+*.o
+*.d
+*.a
+*.elf
+*.bin
+*.img
+*.vhd
+*.vhdx
+*.qcow2
+*.raw
+*.ima
+*.flp
+*.iso
+*.7z
+*.rar
+*.zip
+*.exe
+*.dll
+*.cab
+*.sys
+*.com
+
+# Emulator and debugger state
+*.log
+/core
+/core.*
+.gdb_history
+
+# Local editor state
+.cache/
+.idea/
+.vscode/
+.references/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*~
+*.swp

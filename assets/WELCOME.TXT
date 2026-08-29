@@ -1,0 +1,2 @@
+DOS-C32 provides MS-DOS compatibility on a protected 32-bit i386 kernel.
+It is running through a legacy BIOS boot.

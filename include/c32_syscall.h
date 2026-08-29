@@ -1,0 +1,27 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+/* Stable register ABI between a C32 Ring-3 process and the kernel. */
+#ifndef DOSC32_C32_SYSCALL_H
+#define DOSC32_C32_SYSCALL_H
+
+#define C32_SYSCALL_VECTOR 0x30u
+
+enum c32_syscall_number {
+	C32_SYSCALL_CONSOLE_WRITE = 1u,
+	C32_SYSCALL_CONSOLE_READ_LINE = 2u,
+	C32_SYSCALL_CONSOLE_CLEAR = 3u,
+	C32_SYSCALL_DOS_EXEC = 4u,
+	C32_SYSCALL_PROCESS_EXIT = 5u,
+	C32_SYSCALL_DOS_CHDIR = 6u,
+	C32_SYSCALL_DOS_GETCWD = 7u,
+	C32_SYSCALL_DOS_FILE_OPEN = 8u,
+	C32_SYSCALL_DOS_FILE_READ = 9u,
+	C32_SYSCALL_DOS_FILE_CLOSE = 10u,
+	C32_SYSCALL_DOS_ENV_GET = 11u,
+	C32_SYSCALL_DOS_ENV_SET = 12u
+};
+
+#define C32_SYSCALL_ERROR 0xffffffffu
+#define C32_SYSCALL_NOT_FOUND 0xfffffffeu
+#define C32_SYSCALL_BUFFER_TOO_SMALL 0xfffffffdu
+
+#endif

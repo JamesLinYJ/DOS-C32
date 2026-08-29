@@ -1,0 +1,27 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+# Translate the existing x86 host-test commands to native macOS arm64 Clang.
+set -eu
+
+if [[ " $* " == *" -m32 "* ]]; then
+	exec "${DOSC32_I386_CC:-i686-elf-gcc}" "$@"
+fi
+
+native_cc=${DOSC32_NATIVE_CC:-cc}
+translated=(-DDOSC32_HOST_TEST=1)
+for argument in "$@"; do
+	case "$argument" in
+	-m64|-march=x86-64|-msoft-float|-mno-mmx|-mno-sse|-mno-sse2|\
+	-nostdlib|-static|-no-pie|-fno-pie|-fno-pic|\
+	-Wl,-e,_start|-Wl,--build-id=none|-Wl,--gc-sections)
+		;;
+	-Wcast-align=strict)
+		translated+=(-Wcast-align)
+		;;
+	*)
+		translated+=("$argument")
+		;;
+	esac
+done
+
+exec "$native_cc" "${translated[@]}"

@@ -1,0 +1,12 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+#ifndef DOSC32_SERIO_PRIVATE_H
+#define DOSC32_SERIO_PRIVATE_H
+
+#define SERIO_GENERATION_MAX ((uint64_t)-2)
+#define SERIO_SEQUENCE_MAX ((uint64_t)-2)
+#define SERIO_SLOT_INVALID ((uint16_t)-1)
+#define SERIO_REGISTRY_COOKIE 0x53455247u
+#define SERIO_PORT_COOKIE 0x53455250u
+#define SERIO_DRIVER_COOKIE 0x53455244u
+
+#endif

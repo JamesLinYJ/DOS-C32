@@ -1,0 +1,66 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+/*
+ * Human-readable DOS-C32 interface text.
+ *
+ * These messages are presentation policy, not DOS ABI. INT return values,
+ * flags, and guest structures remain defined by MS-DOS even when English
+ * diagnostics are clearer than the historical COMMAND text.
+ */
+#ifndef DOSC32_DOS_UI_H
+#define DOSC32_DOS_UI_H
+
+#include "types.h"
+
+enum dos_ui_message_id {
+	DOS_UI_BOOT_BANNER = 0,
+	DOS_UI_PLATFORM_BANNER,
+	DOS_UI_BOOT_UNSUPPORTED_DRIVE,
+	DOS_UI_BOOT_VOLUME_ERROR,
+	DOS_UI_BOOT_VOLUME_CORRUPT,
+	DOS_UI_BOOT_VOLUME_UNSUPPORTED,
+	DOS_UI_BOOT_VOLUME_IO_ERROR,
+	DOS_UI_BOOT_VOLUME_NOT_FOUND,
+	DOS_UI_BOOT_VOLUME_INTERNAL_ERROR,
+	DOS_UI_IOMGR_ERROR_PREFIX,
+	DOS_UI_IOMGR_CORRUPT,
+	DOS_UI_IOMGR_UNSUPPORTED,
+	DOS_UI_IOMGR_IO_ERROR,
+	DOS_UI_IOMGR_READ_ONLY,
+	DOS_UI_IOMGR_NO_SPACE,
+	DOS_UI_IOMGR_NOT_FOUND,
+	DOS_UI_IOMGR_INVALID_PATH,
+	DOS_UI_IOMGR_BUSY,
+	DOS_UI_IOMGR_INTERNAL_ERROR,
+	DOS_UI_SHELL_SYNTAX_ERROR,
+	DOS_UI_VOLUME_NO_LABEL,
+	DOS_UI_VOLUME_LABEL,
+	DOS_UI_DIRECTORY_HEADING,
+	DOS_UI_TOTAL_FILES,
+	DOS_UI_TOTAL_BYTES,
+	DOS_UI_TOTAL_DIRECTORIES,
+	DOS_UI_FREE_BYTES,
+	DOS_UI_SIZE_OVERFLOW,
+	DOS_UI_FREE_SPACE_OVERFLOW,
+	DOS_UI_INVALID_DRIVE_OR_PATH,
+	DOS_UI_PATH_TOO_LONG,
+	DOS_UI_ECHO_STATUS,
+	DOS_UI_ENABLED,
+	DOS_UI_DISABLED,
+	DOS_UI_VERSION,
+	DOS_UI_INVALID_DRIVE,
+	DOS_UI_COMMAND_LINE_TOO_LONG,
+	DOS_UI_COMMAND_NOT_FOUND,
+	DOS_UI_AUTOEXEC_LINE_TOO_LONG,
+	DOS_UI_FATAL_STACK_CORRUPTION,
+	DOS_UI_MESSAGE_COUNT
+};
+
+struct dos_ui_text {
+	const char *data;
+	size_t length;
+};
+
+/* Invalid identifiers return a fixed internal-error message, never NULL. */
+struct dos_ui_text dos_ui_text_get(enum dos_ui_message_id id);
+
+#endif

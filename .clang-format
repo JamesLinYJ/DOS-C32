@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Project C formatting rules.
+BasedOnStyle: LLVM
+AlignAfterOpenBracket: Align
+AlignEscapedNewlines: Left
+AlignOperands: true
+UseTab: Always
+IndentWidth: 8
+ContinuationIndentWidth: 8
+TabWidth: 8
+ColumnLimit: 80
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: true
+  AfterStruct: false
+  AfterUnion: false
+  AfterEnum: false
+  BeforeElse: false
+Cpp11BracedListStyle: false
+DerivePointerAlignment: false
+PointerAlignment: Right
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+SortIncludes: false
